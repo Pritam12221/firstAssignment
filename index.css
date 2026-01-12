@@ -154,7 +154,7 @@ footer
     padding-left: 170px;
 }
 
-.nav
+nav
 {
     margin-top: 40px;
     display: flex;
@@ -216,7 +216,7 @@ footer
 }
 
 
-.right-middle
+.right-bottom
 {
     color: #436D7C;
     font-weight: 500;
