@@ -12,36 +12,35 @@
       <section class="left">
         <img class="logo" src="assets/logo.png" alt="" />
 
-        <div class="profile-logo">
+        <nav class="profile-logo">
           <div>
-            <img height="30px" width="30px" src="/assets/logo2.png" alt="" />
+            <img height="35px" width="35px" src="/assets/logo2.png" alt="" />
           </div>
 
           <div class="profile-logo-right">  
             <div>Jessica Thompsan</div>
             <span class="bluredText">Primary User</span>
           </div>
-          
-          <img class="arrowDown" src="assets/Shape.png" alt="" />
-        </div>
+          <div class="arrowDiv"><img class="arrowDown" src="assets/Shape.png" alt="" /></div>
+        </nav>
 
         <section class="left-middle">
-          <div class="middle-content">
+          <nav class="middle-content">
             <img class="left-icons" src="assets/home 1.png" alt="" />Home
-          </div>
-          <div class="middle-content">
+          </nav>
+          <nav class="middle-content">
             <img class="left-icons" src="assets/doc.png" alt="" />Documents
-          </div>
-          <div class="middle-content">
+          </nav>
+          <nav class="middle-content">
             <img class="left-icons" src="assets/chat.png" alt="" />Chat with
             Neptune
-          </div>
-          <div class="middle-content">
+          </nav>
+          <nav class="middle-content">
             <img class="left-icons" src="assets/doubt.png" alt="" />Help
-          </div>
-          <div class="middle-content">
+          </nav>
+          <nav class="middle-content">
             <img class="left-icons" src="assets/setting.png" alt="" />Settings
-          </div>
+          </nav>
         </section>
 
         <footer class="left-bottom">
@@ -70,6 +69,7 @@
           <nav class="right-top">
             <p class="title">My Documents</p>
             <div class="searchBar">
+              <button class="navAdd">Add</button>
               <input
                 class="inputSearch"
                 class="text"
@@ -80,130 +80,95 @@
           </nav>
 
           <section class="right-bottom">
+            <table>
+              <thead>
+                <tr>
+                  <th class="secondTop"><input type="checkbox" /><img class="arrowDown" src="assets/Shape.png" alt="" /><p>Document Name</p></th>
+                  
+                  <th>Status</th>
+                  <th>Last Modified</th>
+                  
+                </tr>
+              </thead>
+        
+              <tbody>
+                <tr>
+                  <td class="firstTop"><input type="checkbox" /><p>Title of Document Goes Here</p></td>
+                  <td>
+                    <span class="badge needs-signing">Needs Signing</span>
+                  </td>
+                  <td>10/22/2024<br><span class="time">2:01 pm</span></td>
+                  <td class="actions">
+                    <button class="btn primary">Sign now</button>
+                    <span class="dots">⋮<div class="navigation"><div class="add">Add</div><div class="add">Delete</div></div></span>
+                  </td>
+                </tr>
+        
+                <tr>
+                  <td class="firstTop"><input type="checkbox" /><p>Title of Document Goes Here</p></td>
+                  <td>
+                    <span class="badge pending">Pending</span>
+                    <div class="subtext"><i class="bluredText">Waiting for &nbsp</i>1 person</div>
+                  </td>
+                  <td>10/22/2024<br><span class="time">2:01 pm</span></td>
+                  <td class="actions">
+                    <button class="btn outline">Preview</button>
+                    <span class="dots">⋮<div class="navigation"><div class="add">Add</div><div class="add">Delete</div></div></span>
+                  </td>
+                </tr>
+        
+                <tr>
+                  <td class="firstTop"><input type="checkbox" /><p>Title of Document Goes Here</p></td>
+                  <td>
+                    <span class="badge pending">Pending</span>
+                    <div class="subtext"><i class="bluredText">Waiting for &nbsp;</i><span class="colored">2 people</span></div>
+                  </td>
+                  <td>10/22/2024<br><span class="time">2:01 pm</span></td>
+                  <td class="actions">
+                    <button class="btn outline">Preview</button>
+                    <span class="dots">⋮<div class="navigation"><div class="add">Add</div><div class="add">Delete</div></div></span>
+                  </td>
+                </tr>
+        
+                <tr>
+                  <td class="firstTop"><input type="checkbox" /><p>Title of Document Goes Here</p></td>
+                  <td>
+                    <span class="badge completed">Completed</span>
+                  </td>
+                  <td>10/22/2024<br><span class="time">2:01 pm</span></td>
+                  <td class="actions">
+                    <button class="btn outline" >Download PDF</button>
+                    <span class="dots">⋮<div class="navigation"><div class="add">Add</div><div class="add">Delete</div></div></span>
+                  </td>
+                </tr>
+        
+                <tr>
+                  <td class="firstTop"><input type="checkbox" /><p>Title of Document Goes Here</p></td>
+                  <td>
+                    <span class="badge completed">Completed</span>
+                  </td>
+                  <td>10/22/2024<br><span class="time">2:01 pm</span></td>
+                  <td class="actions">
+                    <button class="btn outline">Download PDF</button>
+                    <span class="dots">⋮<div class="navigation"><div class="add">Add</div><div class="add">Delete</div></div></span>
+                  </td>
+                </tr>
 
-            <div class="grid-item" id="topHeader">
-              <input class="checkbox" type="checkbox" />
-              <img class="arrowDown-right" src="assets/Shape.png" alt="" />
-              <span id="topHeader">Document Name</span>
-            </div>
-            <div class="grid-item" id="topHeader">Status</div>
-            <div class="grid-item" id="topHeader">Last Modified</div>
-            <div class="grid-item"></div>
-            
-            <div class="grid-item" id="grid-item1">
-              <input class="checkbox" type="checkbox" /> Title of Document Goes
-              Here
-            </div>
-            <div class="grid-item">
-              <button class="right-status-size" id="Signing">
-                Need Signing
-              </button>
-            </div>
-            <div class="grid-item" id="grid-item2">
-              <p>10/22/2024</p>
-              <p>2:01 pm</p>
-            </div>
-            <div class="grid-item" id="grid-item3">
-              <button class="SignNow">Sign now</button
-              ><img src="assets/threeDot.png" alt="" />
-            </div>
-
-            <div class="grid-item" id="grid-item1">
-              <input class="checkbox" type="checkbox" /> Title of Document Goes
-              Here
-            </div>
-            <div class="grid-item" id="grid-item2">
-              <button class="right-status-size" id="Pending">Pending</button>
-              <p class="bluredText">
-                <i>Waiting for<span class="boldColor">2 people </span></i>
-              </p>
-            </div>
-            <div class="grid-item" id="grid-item2">
-              <p>10/22/2024</p>
-              <p>2:01 pm</p>
-            </div>
-            <div class="grid-item" id="grid-item3">
-              <button class="SignNow">Preview</button
-              ><img src="assets/threeDot.png" alt="" />
-            </div>
-
-            <div class="grid-item" id="grid-item1">
-              <input class="checkbox" type="checkbox" /> Title of Document Goes
-              Here
-            </div>
-            <div class="grid-item" id="grid-item2">
-              <button class="right-status-size" id="Pending">Pending</button>
-              <p class="bluredText">
-                <i>Waiting for<span class="boldColor">2 people </span></i>
-              </p>
-            </div>
-            <div class="grid-item" id="grid-item2">
-              <p>10/22/2024</p>
-              <p>2:01 pm</p>
-            </div>
-            <div class="grid-item" id="grid-item3">
-              <button class="SignNow">Preview</button
-              ><img src="assets/threeDot.png" alt="" />
-            </div>
-
-            <div class="grid-item" id="grid-item1">
-              <input class="checkbox" type="checkbox" /> Title of Document Goes
-              Here
-            </div>
-            <div class="grid-item">
-              <button class="right-status-size" id="Completed">
-                Completed
-              </button>
-            </div>
-            <div class="grid-item" id="grid-item2">
-              <p>10/22/2024</p>
-              <p>2:01 pm</p>
-            </div>
-            <div class="grid-item" id="grid-item3">
-              <button class="SignNow">Download PDF</button
-              ><img src="assets/threeDot.png" alt="" />
-            </div>
-
-            <div class="grid-item" id="grid-item1">
-              <input class="checkbox" type="checkbox" /> Title of Document Goes
-              Here
-            </div>
-            <div class="grid-item">
-              <button class="right-status-size" id="Completed">
-                Completed
-              </button>
-            </div>
-            <div class="grid-item" id="grid-item2">
-              <p>10/22/2024</p>
-              <p>2:01 pm</p>
-            </div>
-            <div class="grid-item" id="grid-item3">
-              <button class="SignNow">Download PDF</button
-              ><img src="assets/threeDot.png" alt="" />
-            </div>
-
-            <div class="grid-item" id="grid-item1">
-              <input class="checkbox" type="checkbox" /> Title of Document Goes
-              Here
-            </div>
-            <div class="grid-item">
-              <button class="right-status-size" id="Completed">
-                Completed
-              </button>
-            </div>
-            <div class="grid-item" id="grid-item2">
-              <p>10/22/2024</p>
-              <p>2:01 pm</p>
-            </div>
-            <div class="grid-item" id="grid-item3">
-              <button class="SignNow">Download PDF</button
-              ><img src="assets/threeDot.png" alt="" />
-            </div>
+                <tr>
+                  <td class="firstTop"><input type="checkbox" /><p>Title of Document Goes Here</p></td>
+                  <td>
+                    <span class="badge completed">Completed</span>
+                  </td>
+                  <td>10/22/2024<br><span class="time">2:01 pm</span></td>
+                  <td class="actions">
+                    <button class="btn outline">Download PDF</button>
+                    <span class="dots">⋮<div class="navigation"><div class="add">Add</div><div class="add">Delete</div></div></span>
+                  </td>
+                </tr>
+        
+              </tbody>
+            </table>
           </section>
-
-        </div>
-
-      </section>
 
     </div>
   </body>
