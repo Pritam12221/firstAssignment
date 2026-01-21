@@ -11,41 +11,45 @@
 }
 html,
 body {
-  height: 100%;
+  height: 100vh;
+  width: 100%;
   margin: 0;
   font-family: "Spline Sans", sans-serif;
 }
 
 .parent {
-  height: 100%;
-  width: 100%;
+  min-height: 100vh;
+  width: 100% ;
   display: flex;
 }
 
 .left {
-  position: relative;
   width: 20%;
-  padding: 30px;
+  position: relative;
+  padding: 35px;
   background-color: rgb(248, 248, 248);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .logo {
   display: flex;
   justify-content: flex-start;
+  font-size: 1.6;
 }
 .profile-logo {
   width: 100%;
-  height: 5%;
   display: flex;
   align-items: center;
   position: relative;
-  gap: 10px;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  padding-left: 15px;
   display: flex;
   border: 1px solid #b5bdcd;
   border-radius: 5px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  gap: 10px ;
 }
 .profile-logo-right {
   display: flex;
@@ -66,11 +70,12 @@ body {
 
 .bluredText {
   color: #b5bdcd;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .left-middle {
   width: 100%;
+  height: 60%;
   color: #626d82;
 }
 
@@ -84,7 +89,6 @@ body {
 .middle-content {
   width: 100%;
   padding: 20px 20px 20px 5px;
-  margin-top: 10px;
   display: flex;
   gap: 10px;
   align-items: center;
@@ -130,31 +134,29 @@ footer {
 
 .Havingtrouble {
   font-weight: 500;
-  font-size: 23px;
+  font-size: 2.5vh;
 }
 
 .right {
-  height: 100%;
   width: 100%;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: rgb(224, 222, 219);
 }
 
 .right-container {
-  height: 60%;
-  width: 90%;
-  padding-left: 170px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 50px;
+  width: 80%;
 }
 
-nav {
-  margin-top: 40px;
-  display: flex;
-  height: 20px;
-  gap: 20px;
-}
 
 .right-top {
+  width: 100%;
   font-family: "CarnokyType Zin Display";
-  margin-top: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -167,10 +169,11 @@ nav {
 
 .checkbox {
   scale: 1.3;
+  cursor: pointer;
 }
 
 .inputSearch {
-  width: 300px;
+  width: 100%;
   padding: 15px;
   border: #b5bdcd;
   color: #b5bdcd;
@@ -178,10 +181,6 @@ nav {
   border-radius: 5px;
 }
 
-.inputSearch:hover {
-  background-color: #fdfdfd;
-  border: none;
-}
 
 ::placeholder {
   color: #b5bdcd;
@@ -189,17 +188,20 @@ nav {
 }
 .searchBar {
   position: relative;
+  width: 30%;
+  display: flex;
+  gap: 10px;
 }
 
 .search {
   position: absolute;
   right: 5%;
   top: 30%;
+  
 }
 
 .right-bottom {
   width: 100%;
-  margin-top: 40px;
 }
 
 table {
@@ -208,12 +210,16 @@ table {
   border-collapse: collapse;
   background-color: #ffffff;
   font-size: 1.8vh;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 thead {
 }
 
+tr
+{
+  border-bottom: 1px solid #E8ECF1;
+}
 th,
 td {
   text-align: left;
@@ -226,9 +232,6 @@ th {
   font-weight: 600;
 }
 
-tr {
-  border-bottom: 1px solid #e5e7eb;
-}
 .doc-title {
   color: #436d7c;
   font-weight: 500;
@@ -295,7 +298,6 @@ tr {
   align-items: center;
   gap: 12px;
   justify-content: flex-end;
-  height: 100%;
 }
 
 .dots {
@@ -360,10 +362,62 @@ tr {
 
 .navAdd
 {
-  padding: 12px;
+  padding: 20px;
   background-color: transparent;
   border: 1px solid #b5bdcd;
   border-radius: 5px;
   color: #626d82;
   align-items: center;
+  cursor: pointer;
+}
+
+.right-upper
+{
+  display: flex;
+  align-items: center;  
+}
+
+dialog {
+  position: fixed;           
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  width: 500px;
+  height: fit-content;
+  font-family: "CarnokyType Zin Display";
+}
+
+dialog::backdrop {
+  background: rgba(153, 149, 149, 0.646);
+}
+
+.dialog-box label {
+  display: block;
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+.dialog-box input,
+.dialog-box select {
+  width: 100%;
+  margin-top: 6px;
+  padding: 8px;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.dialogButtons
+{
+padding: 10px;
+background-color: white;
+border: 1px solid black;
+cursor: pointer;
 }

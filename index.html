@@ -1,175 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>First Assignmnent</title>
-    <link rel="stylesheet" href="index.css" />
-  </head>
-  <body>
-    <div class="parent">
 
-      <section class="left">
-        <img class="logo" src="assets/logo.png" alt="" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>First Assignmnent</title>
 
-        <nav class="profile-logo">
-          <div>
-            <img height="35px" width="35px" src="/assets/logo2.png" alt="" />
-          </div>
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-          <div class="profile-logo-right">  
-            <div>Jessica Thompsan</div>
-            <span class="bluredText">Primary User</span>
-          </div>
-          <div class="arrowDiv"><img class="arrowDown" src="assets/Shape.png" alt="" /></div>
-        </nav>
+</head>
 
-        <section class="left-middle">
-          <nav class="middle-content">
-            <img class="left-icons" src="assets/home 1.png" alt="" />Home
-          </nav>
-          <nav class="middle-content">
-            <img class="left-icons" src="assets/doc.png" alt="" />Documents
-          </nav>
-          <nav class="middle-content">
-            <img class="left-icons" src="assets/chat.png" alt="" />Chat with
-            Neptune
-          </nav>
-          <nav class="middle-content">
-            <img class="left-icons" src="assets/doubt.png" alt="" />Help
-          </nav>
-          <nav class="middle-content">
-            <img class="left-icons" src="assets/setting.png" alt="" />Settings
-          </nav>
-        </section>
+<body>
+  <div class="parent">
 
-        <footer class="left-bottom">
-          <img class="left-icons" src="assets/call.png" alt="" />
-          <h5 class="Havingtrouble">Having trouble?</h5>
-          <h5 class="left-bottom-text">
-            Feel free to contact us and we will always help you through the
-            process
-          </h5>
-          <button class="Contact">Contact us</button>
-        </footer>
+    <section class="left">
+      <img height="32px" width="168px" class="logo" src="assets/logo.png" alt="" />
 
+      <nav class="profile-logo">
+        <div>
+          <img height="35px" width="35px" src="/assets/logo2.png" alt="" />
+        </div>
+
+        <div class="profile-logo-right">
+          <div>Jessica Thompsan</div>
+          <span class="bluredText">Primary User</span>
+        </div>
+        <div class="arrowDiv"><img class="arrowDown" src="assets/Shape.png" alt="" /></div>
+      </nav>
+
+      <section class="left-middle">
+        <a class="middle-content">
+          <img class="left-icons" src="assets/home 1.png" alt="" />Home
+        </a>
+        <a class="middle-content">
+          <img class="left-icons" src="assets/doc.png" alt="" />Documents
+        </a>
+        <a class="middle-content">
+          <img class="left-icons" src="assets/chat.png" alt="" />Chat with
+          Neptune
+        </a>
+        <a class="middle-content">
+          <img class="left-icons" src="assets/doubt.png" alt="" />Help
+        </a>
+        <a class="middle-content">
+          <img class="left-icons" src="assets/setting.png" alt="" />Settings
+        </a>
       </section>
 
+      <footer class="left-bottom">
+        <img class="left-icons" src="assets/call.png" alt="" />
+        <h5 class="Havingtrouble">Having trouble?</h5>
+        <h5 class="left-bottom-text">
+          Feel free to contact us and we will always help you through the
+          process
+        </h5>
+        <button class="Contact">Contact us</button>
+      </footer>
 
-      <section class="right">
+    </section>
 
-        <div class="right-container">
-          <div>
-            <nav>
-              Home <img src="assets/chevron-right.png" alt="" />
-              <span class="bluredText">Documents</span>
-            </nav>
-          </div>
 
-          <nav class="right-top">
-            <p class="title">My Documents</p>
-            <div class="searchBar">
-              <button class="navAdd">Add</button>
-              <input
-                class="inputSearch"
-                class="text"
-                placeholder="Search documents"
-              />
-              <img class="search" src="assets/search.png" />
-            </div>
+    <section class="right">
+
+
+      <dialog id="addDocument">
+        <form method="dialog" class="dialog-box">
+          <h2>Add Document</h2>
+      
+          <label>
+            <input type="text" id="addName" placeholder="Document Name" required>
+          </label>
+      
+          <label>
+            Status
+            <select id="addStatus">
+              <option value="Needs Signing">Needs Signing</option>
+              <option value="Pending">Pending</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </label>
+
+          <input type="date" id="newDate">
+          <input type="time" id="newTime">
+      
+          <menu class="dialog-actions">
+            <button class="dialogButtons">Cancel</button>
+            <button id="addDocumentbutton" class="dialogButtons" value="default">Add</button>
+          </menu>
+        </form>
+      </dialog>
+
+      <div class="right-container">
+        <div>
+          <nav class="right-upper">
+            Home <img src="assets/chevron-right.png" alt="" />
+            <span class="bluredText">Documents</span>
           </nav>
+        </div>
 
-          <section class="right-bottom">
-            <table>
-              <thead>
-                <tr>
-                  <th class="secondTop"><input type="checkbox" /><img class="arrowDown" src="assets/Shape.png" alt="" /><p>Document Name</p></th>
-                  
-                  <th>Status</th>
-                  <th>Last Modified</th>
-                  
-                </tr>
-              </thead>
-        
-              <tbody>
-                <tr>
-                  <td class="firstTop"><input type="checkbox" /><p>Title of Document Goes Here</p></td>
-                  <td>
-                    <span class="badge needs-signing">Needs Signing</span>
-                  </td>
-                  <td>10/22/2024<br><span class="time">2:01 pm</span></td>
-                  <td class="actions">
-                    <button class="btn primary">Sign now</button>
-                    <span class="dots">⋮<div class="navigation"><div class="add">Add</div><div class="add">Delete</div></div></span>
-                  </td>
-                </tr>
-        
-                <tr>
-                  <td class="firstTop"><input type="checkbox" /><p>Title of Document Goes Here</p></td>
-                  <td>
-                    <span class="badge pending">Pending</span>
-                    <div class="subtext"><i class="bluredText">Waiting for &nbsp</i>1 person</div>
-                  </td>
-                  <td>10/22/2024<br><span class="time">2:01 pm</span></td>
-                  <td class="actions">
-                    <button class="btn outline">Preview</button>
-                    <span class="dots">⋮<div class="navigation"><div class="add">Add</div><div class="add">Delete</div></div></span>
-                  </td>
-                </tr>
-        
-                <tr>
-                  <td class="firstTop"><input type="checkbox" /><p>Title of Document Goes Here</p></td>
-                  <td>
-                    <span class="badge pending">Pending</span>
-                    <div class="subtext"><i class="bluredText">Waiting for &nbsp;</i><span class="colored">2 people</span></div>
-                  </td>
-                  <td>10/22/2024<br><span class="time">2:01 pm</span></td>
-                  <td class="actions">
-                    <button class="btn outline">Preview</button>
-                    <span class="dots">⋮<div class="navigation"><div class="add">Add</div><div class="add">Delete</div></div></span>
-                  </td>
-                </tr>
-        
-                <tr>
-                  <td class="firstTop"><input type="checkbox" /><p>Title of Document Goes Here</p></td>
-                  <td>
-                    <span class="badge completed">Completed</span>
-                  </td>
-                  <td>10/22/2024<br><span class="time">2:01 pm</span></td>
-                  <td class="actions">
-                    <button class="btn outline" >Download PDF</button>
-                    <span class="dots">⋮<div class="navigation"><div class="add">Add</div><div class="add">Delete</div></div></span>
-                  </td>
-                </tr>
-        
-                <tr>
-                  <td class="firstTop"><input type="checkbox" /><p>Title of Document Goes Here</p></td>
-                  <td>
-                    <span class="badge completed">Completed</span>
-                  </td>
-                  <td>10/22/2024<br><span class="time">2:01 pm</span></td>
-                  <td class="actions">
-                    <button class="btn outline">Download PDF</button>
-                    <span class="dots">⋮<div class="navigation"><div class="add">Add</div><div class="add">Delete</div></div></span>
-                  </td>
-                </tr>
+        <nav class="right-top">
+          <p class="title">My Documents</p>
+          <div class="searchBar">
+            <button class="navAdd"><i class="fa-solid fa-plus"></i></button>
+            <input class="inputSearch" class="text" placeholder="Search documents" />
+            <img class="search" src="assets/search.png" />
+          </div>
+        </nav>
 
-                <tr>
-                  <td class="firstTop"><input type="checkbox" /><p>Title of Document Goes Here</p></td>
-                  <td>
-                    <span class="badge completed">Completed</span>
-                  </td>
-                  <td>10/22/2024<br><span class="time">2:01 pm</span></td>
-                  <td class="actions">
-                    <button class="btn outline">Download PDF</button>
-                    <span class="dots">⋮<div class="navigation"><div class="add">Add</div><div class="add">Delete</div></div></span>
-                  </td>
-                </tr>
-        
-              </tbody>
-            </table>
-          </section>
+        <section class="right-bottom">
+          
+          <table>
+            <thead>
+              <tr>
+                <th class="secondTop"><input type="checkbox" /><img class="arrowDown" src="assets/Shape.png" alt="" />
+                  <p>Document Name</p>
+                </th>
 
-    </div>
-  </body>
+                <th>Status</th>
+                <th>Last Modified</th>
+
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="firstTop"><input type="checkbox" />
+                  <p>Title of Document Goes Here</p>
+                </td>
+                <td>
+                  <span class="badge needs-signing">Needs Signing</span>
+                </td>
+                <td>10/22/2024<br><span class="time">2:01 pm</span></td>
+                <td class="actions">
+                  <button class="btn primary">Sign now</button>
+                  <span class="dots">⋮<div class="navigation">
+                      <div class="add">Add</div>
+                      <div class="add">Delete</div>
+                    </div></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="firstTop"><input type="checkbox" />
+                  <p>Title of Document Goes Here</p>
+                </td>
+                <td>
+                  <span class="badge pending">Pending</span>
+                  <div class="subtext"><i class="bluredText">Waiting for &nbsp</i>1 person</div>
+                </td>
+                <td>10/22/2024<br><span class="time">2:01 pm</span></td>
+                <td class="actions">
+                  <button class="btn outline">Preview</button>
+                  <span class="dots">⋮<div class="navigation">
+                      <div class="add">Add</div>
+                      <div class="add">Delete</div>
+                    </div></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="firstTop"><input type="checkbox" />
+                  <p>Title of Document Goes Here</p>
+                </td>
+                <td>
+                  <span class="badge pending">Pending</span>
+                  <div class="subtext"><i class="bluredText">Waiting for &nbsp;</i><span class="colored">2 people</span>
+                  </div>
+                </td>
+                <td>10/22/2024<br><span class="time">2:01 pm</span></td>
+                <td class="actions">
+                  <button class="btn outline">Preview</button>
+                  <span class="dots">⋮<div class="navigation">
+                      <div class="add">Add</div>
+                      <div class="add">Delete</div>
+                    </div></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="firstTop"><input type="checkbox" />
+                  <p>Title of Document Goes Here</p>
+                </td>
+                <td>
+                  <span class="badge completed">Completed</span>
+                </td>
+                <td>10/22/2024<br><span class="time">2:01 pm</span></td>
+                <td class="actions">
+                  <button class="btn outline">Download PDF</button>
+                  <span class="dots">⋮<div class="navigation">
+                      <div class="add">Add</div>
+                      <div class="add">Delete</div>
+                    </div></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="firstTop"><input type="checkbox" />
+                  <p>Title of Document Goes Here</p>
+                </td>
+                <td>
+                  <span class="badge completed">Completed</span>
+                </td>
+                <td>10/22/2024<br><span class="time">2:01 pm</span></td>
+                <td class="actions">
+                  <button class="btn outline">Download PDF</button>
+                  <span class="dots">⋮<div class="navigation">
+                      <div class="add">Add</div>
+                      <div class="add">Delete</div>
+                    </div></span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="firstTop"><input type="checkbox" />
+                  <p>Title of Document Goes Here</p>
+                </td>
+                <td>
+                  <span class="badge completed">Completed</span>
+                </td>
+                <td>10/22/2024<br><span class="time">2:01 pm</span></td>
+                <td class="actions">
+                  <button class="btn outline">Download PDF</button>
+                  <span class="dots">⋮<div class="navigation">
+                      <div class="add">Add</div>
+                      <div class="add">Delete</div>
+                    </div></span>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </section>
+
+        
+      </div>
+
+     
+
+</body>
+
 </html>
