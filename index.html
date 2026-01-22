@@ -28,8 +28,15 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
           <div>Jessica Thompsan</div>
           <span class="bluredText">Primary User</span>
         </div>
-        <div class="arrowDiv"><img class="arrowDown" src="assets/Shape.png" alt="" /></div>
+        <div class="arrowDiv"><img class="arrowDown" id="arrowDown" src="assets/Shape.png " alt="" /></div>
       </nav>
+
+      <div class="dropdown-menu" id="dropdownMenu">
+        <button class="dropdown-item logout" id="logout">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          Log Out
+      </button>
+    </div>
 
       <section class="left-middle">
         <a class="middle-content">
@@ -76,19 +83,19 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
       
           <label>
             Status
-            <select id="addStatus">
+            <select id="addStatus" required>
               <option value="Needs Signing">Needs Signing</option>
               <option value="Pending">Pending</option>
               <option value="Completed">Completed</option>
             </select>
           </label>
-
-          <input type="date" id="newDate">
-          <input type="time" id="newTime">
+          <input type="number" id="addPeople">
+          <input type="date" id="newDate" required>
+          <input type="time" id="newTime" required>
       
           <menu class="dialog-actions">
-            <button class="dialogButtons">Cancel</button>
-            <button id="addDocumentbutton" class="dialogButtons" value="default">Add</button>
+            <button type="button" class="dialogButtons" id="cancelBtn">Cancel</button>
+            <button type="submit" id="addDocumentbutton" class="dialogButtons">Add</button>
           </menu>
         </form>
       </dialog>
@@ -137,99 +144,19 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
                 <td class="actions">
                   <button class="btn primary">Sign now</button>
                   <span class="dots">⋮<div class="navigation">
-                      <div class="add">Add</div>
-                      <div class="add">Delete</div>
-                    </div></span>
+                    <div class="dots-items edit">
+                      <i class="fa-solid fa-pen-to-square"></i>
+                    </div>
+                  
+                    <div class="dots-items delete">
+                      <i class="fa-solid fa-trash"></i>
+                    </div>
+                    
+                    </div>
+                  </span>
                 </td>
               </tr>
 
-              <tr>
-                <td class="firstTop"><input type="checkbox" />
-                  <p>Title of Document Goes Here</p>
-                </td>
-                <td>
-                  <span class="badge pending">Pending</span>
-                  <div class="subtext"><i class="bluredText">Waiting for &nbsp</i>1 person</div>
-                </td>
-                <td>10/22/2024<br><span class="time">2:01 pm</span></td>
-                <td class="actions">
-                  <button class="btn outline">Preview</button>
-                  <span class="dots">⋮<div class="navigation">
-                      <div class="add">Add</div>
-                      <div class="add">Delete</div>
-                    </div></span>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="firstTop"><input type="checkbox" />
-                  <p>Title of Document Goes Here</p>
-                </td>
-                <td>
-                  <span class="badge pending">Pending</span>
-                  <div class="subtext"><i class="bluredText">Waiting for &nbsp;</i><span class="colored">2 people</span>
-                  </div>
-                </td>
-                <td>10/22/2024<br><span class="time">2:01 pm</span></td>
-                <td class="actions">
-                  <button class="btn outline">Preview</button>
-                  <span class="dots">⋮<div class="navigation">
-                      <div class="add">Add</div>
-                      <div class="add">Delete</div>
-                    </div></span>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="firstTop"><input type="checkbox" />
-                  <p>Title of Document Goes Here</p>
-                </td>
-                <td>
-                  <span class="badge completed">Completed</span>
-                </td>
-                <td>10/22/2024<br><span class="time">2:01 pm</span></td>
-                <td class="actions">
-                  <button class="btn outline">Download PDF</button>
-                  <span class="dots">⋮<div class="navigation">
-                      <div class="add">Add</div>
-                      <div class="add">Delete</div>
-                    </div></span>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="firstTop"><input type="checkbox" />
-                  <p>Title of Document Goes Here</p>
-                </td>
-                <td>
-                  <span class="badge completed">Completed</span>
-                </td>
-                <td>10/22/2024<br><span class="time">2:01 pm</span></td>
-                <td class="actions">
-                  <button class="btn outline">Download PDF</button>
-                  <span class="dots">⋮<div class="navigation">
-                      <div class="add">Add</div>
-                      <div class="add">Delete</div>
-                    </div></span>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="firstTop"><input type="checkbox" />
-                  <p>Title of Document Goes Here</p>
-                </td>
-                <td>
-                  <span class="badge completed">Completed</span>
-                </td>
-                <td>10/22/2024<br><span class="time">2:01 pm</span></td>
-                <td class="actions">
-                  <button class="btn outline">Download PDF</button>
-                  <span class="dots">⋮<div class="navigation">
-                      <div class="add">Add</div>
-                      <div class="add">Delete</div>
-                    </div></span>
-                </td>
-              </tr>
 
             </tbody>
           </table>
