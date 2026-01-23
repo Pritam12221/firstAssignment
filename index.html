@@ -8,8 +8,7 @@
 
   <script src="script.js" defer></script>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
@@ -35,8 +34,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         <button class="dropdown-item logout" id="logout">
           <i class="fa-solid fa-right-from-bracket"></i>
           Log Out
-      </button>
-    </div>
+        </button>
+      </div>
 
       <section class="left-middle">
         <a class="middle-content">
@@ -74,13 +73,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 
       <dialog id="addDocument">
-        <form method="dialog" class="dialog-box">
+        <form class="dialog-box">
           <h2>Add Document</h2>
-      
+
           <label>
             <input type="text" id="addName" placeholder="Document Name" required>
           </label>
-      
+
           <label>
             Status
             <select id="addStatus" required>
@@ -92,7 +91,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
           <input type="number" id="addPeople">
           <input type="date" id="newDate" required>
           <input type="time" id="newTime" required>
-      
+
           <menu class="dialog-actions">
             <button type="button" class="dialogButtons" id="cancelBtn">Cancel</button>
             <button type="submit" id="addDocumentbutton" class="dialogButtons">Add</button>
@@ -118,7 +117,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         </nav>
 
         <section class="right-bottom">
-          
+
           <table>
             <thead>
               <tr>
@@ -133,40 +132,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
             </thead>
 
             <tbody>
-              <tr>
-                <td class="firstTop"><input type="checkbox" />
-                  <p>Title of Document Goes Here</p>
-                </td>
-                <td>
-                  <span class="badge needs-signing">Needs Signing</span>
-                </td>
-                <td>10/22/2024<br><span class="time">2:01 pm</span></td>
-                <td class="actions">
-                  <button class="btn primary">Sign now</button>
-                  <span class="dots">⋮<div class="navigation">
-                    <div class="dots-items edit">
-                      <i class="fa-solid fa-pen-to-square"></i>
-                    </div>
-                  
-                    <div class="dots-items delete">
-                      <i class="fa-solid fa-trash"></i>
-                    </div>
-                    
-                    </div>
-                  </span>
-                </td>
-              </tr>
-
-
+              <!-- Documents by JS -->
             </tbody>
           </table>
         </section>
-
-        
       </div>
-
-     
-
 </body>
 
 </html>
