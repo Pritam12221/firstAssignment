@@ -180,9 +180,11 @@ footer {
   width: 100%;
   padding: 15px;
   border: #b5bdcd;
-  color: #b5bdcd;
+  color: #000000;
   background-color: #fdfdfd;
   border-radius: 5px;
+  font-size: 14px;
+  font-family: "Spline Sans", sans-serif;
 }
 
 
@@ -195,12 +197,32 @@ footer {
   width: 30%;
   display: flex;
   gap: 10px;
+  align-items: center;
+}
+
+.bulkDeleteBtn {
+  padding: 20px;
+  background-color: #f4544e;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.bulkDeleteBtn:hover {
+  background-color: #e63946;
 }
 
 .search {
   position: absolute;
   right: 5%;
-  top: 30%;
   
 }
 
@@ -309,12 +331,19 @@ th {
   font-size: 18px;
   cursor: pointer;
   color: #64748b;
+  padding: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  min-height: 32px;
 }
 
 .navigation {
   position: absolute;
-  top:0;
-  right:-66px;
+  top: 0;
+  left: 100%;
+  margin-left: 8px;
   background: #ffffff;
   border-radius: 10px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
@@ -390,7 +419,7 @@ th {
 {
   padding: 20px;
   background-color: transparent;
-  border: 1px solid #b5bdcd;
+  border: 1px solid #626262d5;
   border-radius: 5px;
   color: #000000;
   align-items: center;
@@ -408,47 +437,130 @@ dialog {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
   border: none;
-  border-radius: 10px;
-  padding: 20px;
-  width: 500px;
-  height: fit-content;
-  font-family:inherit;
+  border-radius: 12px;
+  padding: 0;
+  width: 680px;
+  font-family: "Spline Sans", sans-serif;
+  background-color: #ffffff;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
 }
-::placeholder
-{
-  font-family:inherit;
+
+::placeholder {
+  font-family: "Spline Sans", sans-serif;
+  color: #b5bdcd;
 }
+
 dialog::backdrop {
-  background: rgba(153, 149, 149, 0.646);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+.dialog-box {
+  padding: 40px;
+}
+
+.dialog-box h2 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 32px;
+  font-family: "Spline Sans", sans-serif;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #E8ECF1;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
 }
 
 .dialog-box label {
   display: block;
-  margin-top: 12px;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  font-family: "Spline Sans", sans-serif;
+}
+
+.required-asterisk {
+  color: #f4544e;
   font-weight: 600;
+  margin-left: 2px;
 }
 
 .dialog-box input,
 .dialog-box select {
   width: 100%;
-  margin-top: 6px;
-  padding: 8px;
+  padding: 12px 14px;
+  border: 1px solid #b5bdcd;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: #fdfdfd;
+  font-family: "Spline Sans", sans-serif;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.dialog-box input:focus,
+.dialog-box select:focus {
+  outline: none;
+  border-color: #436d7c;
+  background-color: #ffffff;
+}
+
+.dialog-box input::placeholder {
+  color: #b5bdcd;
 }
 
 .dialog-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
-  margin-top: 16px;
+  gap: 12px;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid #E8ECF1;
 }
 
-.dialogButtons
-{
-padding: 10px;
-background-color: white;
-border: 1px solid black;
-cursor: pointer;
+.dialogButtons {
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Spline Sans", sans-serif;
+  transition: all 0.2s ease;
+  border: 1px solid #b5bdcd;
+  min-width: 120px;
+}
+
+.dialogButtons#cancelBtn {
+  background-color: #ffffff;
+  color: #626d82;
+  border: 1px solid #b5bdcd;
+}
+
+.dialogButtons#cancelBtn:hover {
+  background-color: #f8f9fa;
+  border-color: #94a3b8;
+}
+
+.dialogButtons[type="submit"] {
+  background: #1f4451;
+  color: #ffffff;
+  border: none;
+  min-width: 160px;
+}
+
+.dialogButtons[type="submit"]:hover {
+  background: #1a3843;
 }
 
 
@@ -488,4 +600,10 @@ cursor: pointer;
 #addPeople
 {
   display: none;
+}
+
+.no-items {
+  text-align: center;
+  padding: 40px 16px;
+  color: #64748b;
 }

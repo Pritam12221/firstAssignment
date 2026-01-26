@@ -76,25 +76,39 @@
         <form class="dialog-box">
           <h2>Add Document</h2>
 
-          <label>
-            <input type="text" id="addName" placeholder="Document Name" required>
-          </label>
+          <div class="form-group">
+            <label for="addName">Document Name <span class="required-asterisk">*</span></label>
+            <input type="text" id="addName" placeholder="Enter document name" required>
+          </div>
 
-          <label>
-            Status
+          <div class="form-group">
+            <label for="addStatus">Status <span class="required-asterisk">*</span></label>
             <select id="addStatus" required>
               <option value="Needs Signing">Needs Signing</option>
               <option value="Pending">Pending</option>
               <option value="Completed">Completed</option>
             </select>
-          </label>
-          <input type="number" id="addPeople">
-          <input type="date" id="newDate" required>
-          <input type="time" id="newTime" required>
+          </div>
+
+          <div class="form-group" id="peopleGroup">
+            <label for="addPeople">Number of People <span class="required-asterisk">*</span></label>
+            <input type="number" id="addPeople" placeholder="Enter number" min="1">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="newDate">Date <span class="required-asterisk">*</span></label>
+              <input type="date" id="newDate" required>
+            </div>
+            <div class="form-group">
+              <label for="newTime">Time <span class="required-asterisk">*</span></label>
+              <input type="time" id="newTime" required>
+            </div>
+          </div>
 
           <menu class="dialog-actions">
             <button type="button" class="dialogButtons" id="cancelBtn">Cancel</button>
-            <button type="submit" id="addDocumentbutton" class="dialogButtons">Add</button>
+            <button type="submit" id="addDocumentbutton" class="dialogButtons">Add Document</button>
           </menu>
         </form>
       </dialog>
@@ -110,8 +124,11 @@
         <nav class="right-top">
           <p class="title">My Documents</p>
           <div class="searchBar">
+            <button class="bulkDeleteBtn" id="bulkDeleteBtn" style="display: none;">
+              <i class="fa-solid fa-trash"></i>
+            </button>
             <button class="navAdd"><i class="fa-solid fa-plus"></i></button>
-            <input class="inputSearch" class="text" placeholder="Search documents" />
+            <input class="inputSearch" id="inputSearch" type="text" placeholder="Search documents" />
             <img class="search" src="assets/search.png" />
           </div>
         </nav>
@@ -121,7 +138,8 @@
           <table>
             <thead>
               <tr>
-                <th class="secondTop"><input type="checkbox" /><img class="arrowDown" src="assets/Shape.png" alt="" />
+                <th class="secondTop"><input type="checkbox" id="selectAllCheckbox" /><img class="arrowDown"
+                    src="assets/Shape.png" alt="" />
                   <p>Document Name</p>
                 </th>
 

@@ -15,6 +15,9 @@ const cancelBtn = document.getElementById("cancelBtn");
 const form = dialog.querySelector("form");
 const dialogTitle = dialog.querySelector("h2");
 const submitBtn = document.getElementById("addDocumentbutton");
+const inputSearch = document.querySelector(".inputSearch");
+const bulkDeleteBtn = document.getElementById('bulkDeleteBtn');
+const selectAllCheckbox = document.getElementById('selectAllCheckbox');
 const classifier = {
 
   "Needs Signing": {
@@ -39,7 +42,7 @@ const classifier = {
 };
 
 //need to see
-// const dataSchema = [{
+// const Schema = [{
 //   name: "",
 //   status: "",
 //   date: "",
@@ -50,30 +53,30 @@ const classifier = {
 const localKey = "scrkey"
 let editingId = null;
 
-function getDocuments() {
+function getDocs() {
   return JSON.parse(localStorage.getItem(localKey)) || [];
 }
 
-function saveDocuments(docs) {
+function setDocs(docs) {
   localStorage.setItem(localKey, JSON.stringify(docs));
 }
 
 
-function deleteDocumentById(id) {
-  const docs = getDocuments();
-  const updatedDocs = docs.filter(doc => doc.id !== id);
-  saveDocuments(updatedDocs);
+function deleteId(id) {
+  const docs = getDocs();
+  const updatedDocs = docs.filter(function (doc) { return doc.id !== id; });
+  setDocs(updatedDocs);
   loadDocuments();
 }
 
 function getDocumentById(id) {
-  const docs = getDocuments();
-  return docs.find(doc => doc.id === id);
+  const docs = getDocs();
+  return docs.find(function (doc) { return doc.id === id });
 }
 
-function editDocumentById(id) {
+function editId(id) {
   const doc = getDocumentById(id);
-  if (!doc) return;
+  if (!doc) return;//edge case agr doc nai mila
 
   editingId = id;
 
@@ -96,7 +99,7 @@ function update(doc) {
   return `
       <tr data-id="${doc.id}">
         <td class="firstTop">
-          <input type="checkbox" />
+          <input type="checkbox" class="doc-checkbox" data-id="${doc.id}" />
           <p>${doc.name}</p>
         </td>
   
@@ -129,9 +132,11 @@ function update(doc) {
             <div class="navigation">
               <div class="dots-items edit" data-id="${doc.id}">
                 <i class="fa-solid fa-pen-to-square"></i>
+                <span>Edit</span>
               </div>
               <div class="dots-items delete" data-id="${doc.id}">
                 <i class="fa-solid fa-trash"></i>
+                <span>Delete</span>
               </div>
             </div>
           </span>
@@ -140,12 +145,37 @@ function update(doc) {
     `;
 }
 
-function loadDocuments() {
-  const docs = getDocuments();
+function loadDocuments(searchQuery = "") {
+  const docs = getDocs();
+
   table.innerHTML = "";
-  docs.forEach(doc => {
+
+  const filteredDocs = docs.filter(doc => {
+    if (!searchQuery.trim()) return true;
+    const query = searchQuery.toLowerCase();
+    return (
+      doc.name.toLowerCase().includes(query) ||
+      doc.status.toLowerCase().includes(query)
+    );
+  });
+
+  if (filteredDocs.length === 0) {
+    table.insertAdjacentHTML("beforeend", `
+      <tr>
+        <td colspan="4" class="no-items">
+          No items to be loaded
+        </td>
+      </tr>
+    `);
+    updateBulkDeleteButton();
+    return;
+  }
+
+  filteredDocs.forEach(doc => {
     table.insertAdjacentHTML("beforeend", update(doc));
   });
+
+  updateBulkDeleteButton();
 }
 
 
@@ -159,7 +189,7 @@ function addDocument() {
   //base case
   if (!name || !status || !date || !time) return;
 
-  const docs = getDocuments();
+  const docs = getDocs();
 
   if (editingId !== null) {
     const doc = {
@@ -172,21 +202,22 @@ function addDocument() {
     };
 
     const updatedDocs = docs.map(d => d.id === editingId ? doc : d);
-    saveDocuments(updatedDocs);
+    setDocs(updatedDocs);
     editingId = null;
-    loadDocuments();
   } else {
     const doc = {
-      id: crypto.randomUUID(),name,
+      id: crypto.randomUUID(),
+      name,
       status,
       date,
       time,
       people: status === "Pending" ? people : null
     };
     docs.push(doc);
-    saveDocuments(docs);
-    table.insertAdjacentHTML("beforeend", update(doc));
+    setDocs(docs);
   }
+  const currentSearch = inputSearch ? inputSearch.value : "";
+  loadDocuments(currentSearch);
 }
 
 function toggleLogOut() {
@@ -208,7 +239,7 @@ function renderDialog() {
   form.reset();
   addPeople.style.display = "none";
   editingId = null;
-  if (submitBtn) submitBtn.textContent = "Add";
+  if (submitBtn) submitBtn.textContent = "Add Document";
   if (dialogTitle) dialogTitle.textContent = "Add Document";
 }
 
@@ -236,9 +267,17 @@ drop.addEventListener("click", function () {
   toggleLogOut();
 })
 
+// Search filter 
+if (inputSearch) {
+  inputSearch.addEventListener("input", (e) => {
+    const searchQuery = e.target.value;
+    loadDocuments(searchQuery);
+  });
+}
 
 if (table) {
   table.addEventListener("click", (e) => {
+    //keeps bubbling in dom tree jb tk pass ka delete/edit/dots na mile
     const del = e.target.closest(".delete");
     const edit = e.target.closest(".edit");
     const dots = e.target.closest(".dots");
@@ -248,7 +287,7 @@ if (table) {
       e.stopPropagation();
       const id = del.dataset.id;
       if (id) {
-        deleteDocumentById(id);
+        deleteId(id);
       }
       return;
     }
@@ -258,7 +297,7 @@ if (table) {
       e.stopPropagation();
       const id = edit.dataset.id;
       if (id) {
-        editDocumentById(id);
+        editId(id);
       }
       return;
     }
@@ -275,5 +314,56 @@ if (table) {
   });
 }
 
+function deleteSelectedDocuments() {
+  const checkedBoxes = document.querySelectorAll('.doc-checkbox:checked');
+  if (checkedBoxes.length === 0) return;
+
+  const idsToDelete = Array.from(checkedBoxes).map(cb => cb.dataset.id);
+  const docs = getDocs();
+  const updatedDocs = docs.filter(doc => !idsToDelete.includes(doc.id));
+  setDocs(updatedDocs);
+
+  // Uncheck header checkbox
+  const selectAllCheckbox = document.getElementById('selectAllCheckbox');
+  if (selectAllCheckbox) {
+    selectAllCheckbox.checked = false;
+  }
+
+  loadDocuments();
+  updateBulkDeleteButton();
+}
+
+function updateBulkDeleteButton() {
+  const checkedCount = document.querySelectorAll('.doc-checkbox:checked').length;
+  const bulkDeleteBtn = document.getElementById('bulkDeleteBtn');
+  if (bulkDeleteBtn) {
+    bulkDeleteBtn.style.display = checkedCount > 0 ? 'block' : 'none';
+  }
+}
+
+if (table) {
+  table.addEventListener('change', (e) => {
+    if (e.target.classList.contains('doc-checkbox')) {
+      updateBulkDeleteButton();
+    }
+  });
+}
+
+
+if (bulkDeleteBtn) {
+  bulkDeleteBtn.addEventListener('click', deleteSelectedDocuments);
+}
+
+
+if (selectAllCheckbox) {
+  selectAllCheckbox.addEventListener('click', (e) => {
+    const isChecked = e.target.checked;
+    const allCheckboxes = document.querySelectorAll('.doc-checkbox');
+    allCheckboxes.forEach(checkbox => {
+      checkbox.checked = isChecked;
+    });
+    updateBulkDeleteButton();
+  });
+}
 
 loadDocuments();
