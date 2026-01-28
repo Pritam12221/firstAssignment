@@ -185,7 +185,7 @@ function addDocument() {
   const date = newDate.value;
   const time = newTime.value;
   const people = addPeople.value;
-  cont docs 
+  const docs = getDocs();
   if (editingId !== null) {
     const doc = {
       id: editingId,
@@ -230,13 +230,6 @@ function statusChange() {
   }
 }
 
-function renderDialog() {
-  form.reset();
-  addPeople.style.display = "none";
-  editingId = null;
-  if (submitBtn) submitBtn.textContent = "Add Document";
-  if (dialogTitle) dialogTitle.textContent = "Add Document";
-}
 
 
 function updateBulkDeleteButton() {
@@ -247,12 +240,12 @@ function updateBulkDeleteButton() {
 }
 
 function deleteSelectedDocuments() {
-  const checkedBoxes = document.querySelectorAll('.doc-checkbox:checked');
-  if (checkedBoxes.length === 0) return;
+  const check = document.querySelectorAll('.doc-checkbox:checked');
+  if (check.length === 0) return;
 
-  const idsToDelete = Array.from(checkedBoxes).map(cb => cb.dataset.id);
+  const idDel = Array.from(check).map(cb => cb.dataset.id);
   const docs = getDocs();
-  const updatedDocs = docs.filter(doc => !idsToDelete.includes(doc.id));
+  const updatedDocs = docs.filter(doc => !idDel.includes(doc.id));
   setDocs(updatedDocs);
 
   if (selectAllCheckbox) {
@@ -270,11 +263,11 @@ form.addEventListener("submit", (e) => {
 });
 
 navAdd.addEventListener("click", () => {
+  form.reset();
   dialog.showModal();
 });
 
 cancelBtn.addEventListener("click", () => {
-  renderDialog();
   dialog.close();
 });
 
@@ -363,8 +356,7 @@ if (table) {
 }
 
 // Bulk delete
-if (bulkDeleteBtn) {
-  bulkDeleteBtn.addEventListener('click', deleteSelectedDocuments);
-}
+bulkDeleteBtn.addEventListener('click', deleteSelectedDocuments());
+
 
 loadDocuments();
