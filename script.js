@@ -180,7 +180,7 @@ function loadDocuments(searchQuery = "") {
 
 
 function addDocument() {
-  const name=addName.value;
+  const name = addName.value;
   const status = addStatus.value;
   const date = newDate.value;
   const time = newTime.value;
@@ -287,11 +287,12 @@ table.addEventListener('change', (e) => {
   }
 });
 
-addName.addEventListener('change',function()
-{
-   addName.value=addName.value.trim();
-   if(!form.checkValidity){return }
-})
+addName.addEventListener('change', function () {
+  addName.value = addName.value.trim();
+  if (!form.checkValidity()) {
+    return;
+  }
+});
 
 
 
@@ -356,7 +357,9 @@ if (table) {
 }
 
 // Bulk delete
-bulkDeleteBtn.addEventListener('click', deleteSelectedDocuments());
+if (bulkDeleteBtn) {
+  bulkDeleteBtn.addEventListener('click', deleteSelectedDocuments);
+}
 
 
 loadDocuments();
