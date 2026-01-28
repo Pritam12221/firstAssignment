@@ -180,17 +180,12 @@ function loadDocuments(searchQuery = "") {
 
 
 function addDocument() {
-  const name = addName.value;
+  const name=addName.value;
   const status = addStatus.value;
   const date = newDate.value;
   const time = newTime.value;
   const people = addPeople.value;
-
-  //base case
-  if (!name || !status || !date || !time) return;
-
-  const docs = getDocs();
-
+  cont docs 
   if (editingId !== null) {
     const doc = {
       id: editingId,
@@ -243,6 +238,31 @@ function renderDialog() {
   if (dialogTitle) dialogTitle.textContent = "Add Document";
 }
 
+
+function updateBulkDeleteButton() {
+  const checkedCount = document.querySelectorAll('.doc-checkbox:checked').length;
+  if (bulkDeleteBtn) {
+    bulkDeleteBtn.style.display = checkedCount > 0 ? 'block' : 'none';
+  }
+}
+
+function deleteSelectedDocuments() {
+  const checkedBoxes = document.querySelectorAll('.doc-checkbox:checked');
+  if (checkedBoxes.length === 0) return;
+
+  const idsToDelete = Array.from(checkedBoxes).map(cb => cb.dataset.id);
+  const docs = getDocs();
+  const updatedDocs = docs.filter(doc => !idsToDelete.includes(doc.id));
+  setDocs(updatedDocs);
+
+  if (selectAllCheckbox) {
+    selectAllCheckbox.checked = false;
+  }
+
+  loadDocuments();
+  updateBulkDeleteButton();
+}
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   addDocument();
@@ -267,7 +287,23 @@ drop.addEventListener("click", function () {
   toggleLogOut();
 })
 
-// Search filter 
+
+table.addEventListener('change', (e) => {
+  if (e.target.classList.contains('doc-checkbox')) {
+    updateBulkDeleteButton();
+  }
+});
+
+addName.addEventListener('change',function()
+{
+   addName.value=addName.value.trim();
+   if(!form.checkValidity){return }
+})
+
+
+
+
+
 if (inputSearch) {
   inputSearch.addEventListener("input", (e) => {
     const searchQuery = e.target.value;
@@ -277,12 +313,11 @@ if (inputSearch) {
 
 if (table) {
   table.addEventListener("click", (e) => {
-    //keeps bubbling in dom tree jb tk pass ka delete/edit/dots na mile
     const del = e.target.closest(".delete");
     const edit = e.target.closest(".edit");
     const dots = e.target.closest(".dots");
 
-    // del
+    // delete 
     if (del) {
       e.stopPropagation();
       const id = del.dataset.id;
@@ -292,7 +327,7 @@ if (table) {
       return;
     }
 
-    // edit
+    // edit 
     if (edit) {
       e.stopPropagation();
       const id = edit.dataset.id;
@@ -302,7 +337,7 @@ if (table) {
       return;
     }
 
-    // dots 
+    // dots
     if (dots) {
       e.stopPropagation();
       const nav = dots.querySelector(".navigation");
@@ -312,58 +347,24 @@ if (table) {
       return;
     }
   });
-}
 
-function deleteSelectedDocuments() {
-  const checkedBoxes = document.querySelectorAll('.doc-checkbox:checked');
-  if (checkedBoxes.length === 0) return;
 
-  const idsToDelete = Array.from(checkedBoxes).map(cb => cb.dataset.id);
-  const docs = getDocs();
-  const updatedDocs = docs.filter(doc => !idsToDelete.includes(doc.id));
-  setDocs(updatedDocs);
-
-  // Uncheck header checkbox
-  const selectAllCheckbox = document.getElementById('selectAllCheckbox');
   if (selectAllCheckbox) {
-    selectAllCheckbox.checked = false;
-  }
-
-  loadDocuments();
-  updateBulkDeleteButton();
-}
-
-function updateBulkDeleteButton() {
-  const checkedCount = document.querySelectorAll('.doc-checkbox:checked').length;
-  const bulkDeleteBtn = document.getElementById('bulkDeleteBtn');
-  if (bulkDeleteBtn) {
-    bulkDeleteBtn.style.display = checkedCount > 0 ? 'block' : 'none';
-  }
-}
-
-if (table) {
-  table.addEventListener('change', (e) => {
-    if (e.target.classList.contains('doc-checkbox')) {
+    selectAllCheckbox.addEventListener('click', (e) => {
+      const isChecked = e.target.checked;
+      const allCheckboxes = document.querySelectorAll('.doc-checkbox');
+      allCheckboxes.forEach(checkbox => {
+        checkbox.checked = isChecked;
+      });
       updateBulkDeleteButton();
-    }
-  });
+    });
+  }
+
 }
 
-
+// Bulk delete
 if (bulkDeleteBtn) {
   bulkDeleteBtn.addEventListener('click', deleteSelectedDocuments);
-}
-
-
-if (selectAllCheckbox) {
-  selectAllCheckbox.addEventListener('click', (e) => {
-    const isChecked = e.target.checked;
-    const allCheckboxes = document.querySelectorAll('.doc-checkbox');
-    allCheckboxes.forEach(checkbox => {
-      checkbox.checked = isChecked;
-    });
-    updateBulkDeleteButton();
-  });
 }
 
 loadDocuments();

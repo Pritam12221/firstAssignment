@@ -214,6 +214,8 @@ footer {
   align-items: center;
   gap: 6px;
   transition: background-color 0.2s ease;
+  position: absolute;
+  left:-65px
 }
 
 .bulkDeleteBtn:hover {
