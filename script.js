@@ -41,6 +41,26 @@ const classifier = {
 
 };
 
+
+function formatDateDisplay(dateStr) {
+  if (!dateStr) return "";
+
+  if (dateStr.includes("/")) return dateStr;
+
+
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) {
+
+    return dateStr;
+  }
+
+  return d.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+}
+
 //need to see
 // const Schema = [{
 //   name: "",
@@ -118,7 +138,7 @@ function update(doc) {
         </td>
   
         <td>
-          ${doc.date || ""}<br>
+          ${formatDateDisplay(doc.date)}<br>
           <span class="time">${doc.time || ""}</span>
         </td>
   
@@ -223,9 +243,11 @@ function toggleLogOut() {
 function statusChange() {
   if (addStatus.value === "Pending") {
     addPeople.style.display = "block";
+    addPeople.required = true;
   }
   else {
     addPeople.style.display = "none";
+    addPeople.required = false;
     addPeople.value = "";
   }
 }
@@ -361,5 +383,8 @@ if (bulkDeleteBtn) {
   bulkDeleteBtn.addEventListener('click', deleteSelectedDocuments);
 }
 
+
+// Ensure the people field requirement matches the default status on load
+statusChange();
 
 loadDocuments();
