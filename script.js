@@ -61,17 +61,18 @@ function formatDateDisplay(dateStr) {
   });
 }
 
-//need to see
-// const Schema = [{
-//   name: "",
-//   status: "",
-//   date: "",
-//   time: "",
-//   people: status === "Pending" ? people : null
-// }]
+
 
 const localKey = "scrkey"
 let editingId = null;
+
+function renderDialog() {
+  form.reset();
+  addPeople.style.display = "none";
+  editingId = null;
+  if (submitBtn) submitBtn.textContent = "Add";
+  if (dialogTitle) dialogTitle.textContent = "Add Document";
+}
 
 function getDocs() {
   return JSON.parse(localStorage.getItem(localKey)) || [];
@@ -290,6 +291,7 @@ navAdd.addEventListener("click", () => {
 });
 
 cancelBtn.addEventListener("click", () => {
+  renderDialog();
   dialog.close();
 });
 
