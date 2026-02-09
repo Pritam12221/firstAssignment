@@ -1,22 +1,22 @@
-const dialog = document.getElementById("addDocument");
-const navAdd = document.querySelector(".navAdd");
-const addDocumentBtn = document.getElementById("addDocumentbutton");
-const table = document.querySelector("tbody");
-const addName = document.getElementById("addName");
-const addStatus = document.getElementById("addStatus");
-const newDate = document.getElementById("newDate");
-const newTime = document.getElementById("newTime");
-const drop = document.getElementsByClassName("profile-logo")[0];
-const logOut = document.getElementById("dropdownMenu");
-const arrowDown = document.getElementById("arrowDown");
-const addPeople = document.getElementById("addPeople");
-const navigation = document.querySelectorAll(".navigation");
-const cancelBtn = document.getElementById("cancelBtn");
-const form = dialog.querySelector("form");
-const dialogTitle = dialog.querySelector("h2");
-const submitBtn = document.getElementById("addDocumentbutton");
-const inputSearch = document.querySelector(".inputSearch");
-const bulkDeleteBtn = document.getElementById('bulkDeleteBtn');
+const dialog            = document.getElementById("addDocument");
+const navAdd            = document.querySelector(".navAdd");
+const addDocumentBtn    = document.getElementById("addDocumentbutton");
+const table             = document.querySelector("tbody");
+const addName           = document.getElementById("addName");
+const addStatus         = document.getElementById("addStatus");
+const newDate           = document.getElementById("newDate");
+const newTime           = document.getElementById("newTime");
+const drop              = document.getElementsByClassName("profile-logo")[0];
+const logOut            = document.getElementById("dropdownMenu");
+const arrowDown         = document.getElementById("arrowDown");
+const addPeople         = document.getElementById("addPeople");
+const navigation        = document.querySelectorAll(".navigation");
+const cancelBtn         = document.getElementById("cancelBtn");
+const form              = dialog.querySelector("form");
+const dialogTitle       = dialog.querySelector("h2");
+const submitBtn         = document.getElementById("addDocumentbutton");
+const inputSearch       = document.querySelector(".inputSearch");
+const bulkDeleteBtn     = document.getElementById('bulkDeleteBtn');
 const selectAllCheckbox = document.getElementById('selectAllCheckbox');
 const classifier = {
 
@@ -385,8 +385,6 @@ if (bulkDeleteBtn) {
   bulkDeleteBtn.addEventListener('click', deleteSelectedDocuments);
 }
 
-
-// Ensure the people field requirement matches the default status on load
 statusChange();
 
 loadDocuments();
