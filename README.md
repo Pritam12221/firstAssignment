@@ -12,6 +12,12 @@ main html file
 index.css:
 main css file
 
+script.js:
+old js file
+
+index.js(updated file):
+converted ts file
+
 
 Future update:
-Make the website responsive
+need to be assigned
