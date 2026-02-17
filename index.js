@@ -1,5 +1,6 @@
 export {};
 const dialog = document.getElementById("addDocument");
+const dialogOverlay = document.getElementById("dialogOverlay");
 const navAdd = document.querySelector(".navAdd");
 const table = document.querySelector("tbody");
 const addName = document.getElementById("addName");
@@ -15,27 +16,27 @@ const form = dialog === null || dialog === void 0 ? void 0 : dialog.querySelecto
 const dialogTitle = dialog === null || dialog === void 0 ? void 0 : dialog.querySelector("h2");
 const submitBtn = document.getElementById("addDocumentbutton");
 const inputSearch = document.querySelector(".inputSearch");
-const blkDelBtn = document.getElementById('blkDelBtn');
-const selectAllCheckbox = document.getElementById('selectAllCheckbox');
+const blkDelBtn = document.getElementById("bulkDeleteBtn");
+const selectAllCheckbox = document.getElementById("selectAllCheckbox");
 const classifier = {
     "Needs Signing": {
-        signinSt: "needs-signing",
-        btnClass: "primary",
-        btnText: "Sign now",
-        showPeople: false
+        SignInStatus: "needs-signing",
+        buttonClass: "primary",
+        buttonText: "Sign now",
+        showPeople: false,
     },
-    "Pending": {
-        signinSt: "pending",
-        btnClass: "outline",
-        btnText: "Preview",
-        showPeople: true
+    Pending: {
+        SignInStatus: "pending",
+        buttonClass: "outline",
+        buttonText: "Preview",
+        showPeople: true,
     },
-    "Completed": {
-        signinSt: "completed",
-        btnClass: "outline",
-        btnText: "Download PDF",
-        showPeople: false
-    }
+    Completed: {
+        SignInStatus: "completed",
+        buttonClass: "outline",
+        buttonText: "Download PDF",
+        showPeople: false,
+    },
 };
 const localKey = "scrkey";
 let editingId = null;
@@ -64,6 +65,14 @@ function renderDialog() {
     submitBtn.textContent = "Add";
     dialogTitle.textContent = "Add Document";
 }
+function showOverlay() {
+    dialogOverlay.style.display = "block";
+    dialog === null || dialog === void 0 ? void 0 : dialog.showModal();
+}
+function closeOverlay() {
+    dialogOverlay.style.display = "none";
+    dialog === null || dialog === void 0 ? void 0 : dialog.close();
+}
 function getDocs() {
     const stored = localStorage.getItem(localKey);
     return stored ? JSON.parse(stored) : [];
@@ -73,21 +82,24 @@ function setDocs(docs) {
 }
 function deleteId(id) {
     const docs = getDocs();
-    const updatedDocs = docs.filter(function (doc) { return doc.id !== id; });
+    const updatedDocs = docs.filter(function (doc) {
+        return doc.id !== id;
+    });
     setDocs(updatedDocs);
     loadDocuments();
 }
 function getDocumentById(id) {
     const docs = getDocs();
-    return docs.find(function (doc) { return doc.id === id; });
+    return docs.find(function (doc) {
+        return doc.id === id;
+    });
 }
 function editId(id) {
     const doc = getDocumentById(id);
     if (!doc)
         return; // edge case agr document nai mila
     editingId = id;
-    if (!addName || !addStatus || !newDate || !newTime || !addPeople)
-        addName.value = doc.name;
+    addName.value = doc.name;
     addStatus.value = doc.status;
     newDate.value = doc.date;
     newTime.value = doc.time;
@@ -107,7 +119,7 @@ function update(doc) {
             </td>
     
             <td>
-            <span class="badge ${cfg === null || cfg === void 0 ? void 0 : cfg.signinSt}">
+            <span class="badge ${cfg === null || cfg === void 0 ? void 0 : cfg.SignInStatus}">
                 ${doc.status || "Needs Signing"}
             </span>
     
@@ -125,8 +137,8 @@ function update(doc) {
             </td>
     
             <td class="actions">
-            <button class="btn ${cfg === null || cfg === void 0 ? void 0 : cfg.btnClass}">
-                ${cfg === null || cfg === void 0 ? void 0 : cfg.btnText}
+            <button class="btn ${cfg === null || cfg === void 0 ? void 0 : cfg.buttonClass}">
+                ${cfg === null || cfg === void 0 ? void 0 : cfg.buttonText}
             </button>
     
             <span class="dots">
@@ -151,7 +163,7 @@ function loadDocuments(searchQuery = "") {
     if (!table)
         return;
     table.innerHTML = "";
-    const filteredDocs = docs.filter(doc => {
+    const filteredDocs = docs.filter((doc) => {
         if (!searchQuery.trim())
             return true;
         const query = searchQuery.toLowerCase();
@@ -169,7 +181,7 @@ function loadDocuments(searchQuery = "") {
         updateBulkDeleteButton();
         return;
     }
-    filteredDocs.forEach(doc => {
+    filteredDocs.forEach((doc) => {
         table.insertAdjacentHTML("beforeend", update(doc));
     });
     updateBulkDeleteButton();
@@ -190,9 +202,9 @@ function addDocument() {
             status,
             date,
             time,
-            people: status === "Pending" ? people : null
+            people: status === "Pending" ? people : null,
         };
-        const updatedDocs = docs.map(d => d.id === editingId ? doc : d);
+        const updatedDocs = docs.map((d) => (d.id === editingId ? doc : d));
         setDocs(updatedDocs);
         editingId = null;
     }
@@ -203,7 +215,7 @@ function addDocument() {
             status,
             date,
             time,
-            people: status === "Pending" ? people : null
+            people: status === "Pending" ? people : null,
         };
         setDocs([...docs, doc]);
     }
@@ -211,10 +223,13 @@ function addDocument() {
     loadDocuments(currentSearch);
 }
 function toggleLogOut() {
-    if (!logOut || !arrowDown)
-        return;
-    logOut.style.display = logOut.style.display === "none" ? "block" : "none";
-    arrowDown.style.transform = arrowDown.style.transform === "rotate(0deg)" ? "rotate(180deg)" : "rotate(0deg)";
+    console.log("clicked");
+    logOut.style.display = logOut.style.display === "block" ? "none" : "block";
+    arrowDown.style.transform =
+        arrowDown.style.transform === "rotate(0deg)"
+            ? "rotate(180deg)"
+            : "rotate(0deg)";
+    console.log("2licked");
 }
 function statusChange() {
     if (!addStatus || !addPeople)
@@ -230,22 +245,22 @@ function statusChange() {
     }
 }
 function updateBulkDeleteButton() {
-    const checkedCount = document.querySelectorAll('.doc-checkbox:checked').length;
-    blkDelBtn.style.display = checkedCount > 0 ? 'block' : 'none';
+    const checkedCount = document.querySelectorAll(".doc-checkbox:checked").length;
+    blkDelBtn.style.display = checkedCount > 0 ? "block" : "none";
 }
 function deleteSelectedDocuments() {
-    const checkboxes = document.querySelectorAll('.doc-checkbox:checked');
+    const checkboxes = document.querySelectorAll(".doc-checkbox:checked");
     if (checkboxes.length === 0)
         return;
     const ids = [];
-    Array.from(checkboxes).forEach(cb => {
+    Array.from(checkboxes).forEach((cb) => {
         const id = cb.dataset.id;
         if (id) {
             ids.push(id);
         }
     });
     const docs = getDocs();
-    const updatedDocs = docs.filter(doc => !ids.includes(doc.id));
+    const updatedDocs = docs.filter((doc) => !ids.includes(doc.id));
     setDocs(updatedDocs);
     if (selectAllCheckbox) {
         selectAllCheckbox.checked = false;
@@ -256,29 +271,29 @@ function deleteSelectedDocuments() {
 form === null || form === void 0 ? void 0 : form.addEventListener("submit", (e) => {
     e.preventDefault();
     addDocument();
-    dialog === null || dialog === void 0 ? void 0 : dialog.close();
+    closeOverlay();
 });
 navAdd === null || navAdd === void 0 ? void 0 : navAdd.addEventListener("click", () => {
-    form === null || form === void 0 ? void 0 : form.reset();
-    dialog === null || dialog === void 0 ? void 0 : dialog.showModal();
+    renderDialog();
+    showOverlay();
 });
 cancelBtn === null || cancelBtn === void 0 ? void 0 : cancelBtn.addEventListener("click", () => {
     renderDialog();
-    dialog === null || dialog === void 0 ? void 0 : dialog.close();
+    closeOverlay();
 });
-addStatus === null || addStatus === void 0 ? void 0 : addStatus.addEventListener('change', function () {
+addStatus === null || addStatus === void 0 ? void 0 : addStatus.addEventListener("change", function () {
     statusChange();
 });
 drop === null || drop === void 0 ? void 0 : drop.addEventListener("click", function () {
     toggleLogOut();
 });
-table === null || table === void 0 ? void 0 : table.addEventListener('change', (e) => {
+table === null || table === void 0 ? void 0 : table.addEventListener("change", (e) => {
     const target = e.target;
-    if (target.classList.contains('doc-checkbox')) {
+    if (target.classList.contains("doc-checkbox")) {
         updateBulkDeleteButton();
     }
 });
-addName === null || addName === void 0 ? void 0 : addName.addEventListener('change', function () {
+addName === null || addName === void 0 ? void 0 : addName.addEventListener("change", function () {
     if (!addName || !form)
         return;
     addName.value = addName.value.trim();
@@ -300,7 +315,7 @@ if (table) {
         const del = target.closest(".delete");
         const edit = target.closest(".edit");
         const dots = target.closest(".dots");
-        // delete 
+        // delete
         if (del) {
             e.stopPropagation();
             const id = (_a = del.dataset) === null || _a === void 0 ? void 0 : _a.id;
@@ -309,7 +324,7 @@ if (table) {
             }
             return;
         }
-        // edit 
+        // edit
         if (edit) {
             e.stopPropagation();
             const id = (_b = edit.dataset) === null || _b === void 0 ? void 0 : _b.id;
@@ -330,11 +345,11 @@ if (table) {
     });
     //checkboxes
     if (selectAllCheckbox) {
-        selectAllCheckbox.addEventListener('click', (e) => {
+        selectAllCheckbox.addEventListener("click", (e) => {
             const target = e.target;
             const isChecked = target.checked;
-            const checkedOne = document.querySelectorAll('.doc-checkbox');
-            checkedOne.forEach(checkbox => {
+            const checkedOne = document.querySelectorAll(".doc-checkbox");
+            checkedOne.forEach((checkbox) => {
                 checkbox.checked = isChecked;
             });
             updateBulkDeleteButton();
@@ -343,7 +358,7 @@ if (table) {
 }
 // Bulk delete
 if (blkDelBtn) {
-    blkDelBtn.addEventListener('click', deleteSelectedDocuments);
+    blkDelBtn.addEventListener("click", deleteSelectedDocuments);
 }
 statusChange();
 loadDocuments();
